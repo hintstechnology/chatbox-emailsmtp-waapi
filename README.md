@@ -1,108 +1,93 @@
-# Chat System
+# chatbox-emailsmtp-waapi
 
-Sistem chat dengan frontend React dan backend Laravel.
+A full chatbox system with integration to SMTP mail server and WhatsApp API
 
-## Struktur Project
+## About
+
+A complete chatbox system with:
+- **Frontend Chatbox** (Port 5001) - Customer-facing chat interface
+- **Frontend Admin** (Port 5002) - Admin dashboard for managing conversations
+- **Backend Laravel** (Port 5000) - GraphQL API with CSV-based storage
+
+## Features
+
+- Real-time chat between customers and admins
+- CSV-based storage for chat history (no database setup required)
+- SMTP email notifications
+- Email recipient management
+- Admin dashboard for conversation management
+- GraphQL API for all operations
+
+## Project Structure
 
 ```
-Chat System/
-├── fe/          # Frontend (React + Vite)
-└── be/          # Backend (Laravel)
+├── be/              # Laravel backend (Port 5000)
+├── fe_chatbox/      # Chatbox frontend (Port 5001)
+├── fe_admin/        # Admin frontend (Port 5002)
+└── fe/              # Legacy frontend (can be removed)
 ```
 
-## Setup
+## Quick Start
 
-### Backend (Laravel)
+### Backend Setup
 
-1. Masuk ke folder `be`:
 ```bash
 cd be
-```
-
-2. Install dependencies:
-```bash
 composer install
-```
-
-3. Copy `.env.example` ke `.env`:
-```bash
-cp .env.example .env
-```
-
-4. Generate application key:
-```bash
 php artisan key:generate
-```
-
-5. Konfigurasi database di `.env`:
-```
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=chat_system
-DB_USERNAME=root
-DB_PASSWORD=
-```
-
-6. Jalankan migrations:
-```bash
-php artisan migrate
-```
-
-7. Start server:
-```bash
 php artisan serve --port=5000
 ```
 
-Backend akan berjalan di `http://localhost:5000`
+### Frontend Setup
 
-### Frontend (React)
-
-1. Masuk ke folder `fe`:
+#### Chatbox Frontend
 ```bash
-cd fe
-```
-
-2. Install dependencies:
-```bash
+cd fe_chatbox
 npm install
-```
-
-3. Copy `.env.example` ke `.env`:
-```bash
-cp .env.example .env
-```
-
-4. Konfigurasi API URL di `.env`:
-```
-VITE_API_BASE_URL=http://localhost:5000/api/v1
-```
-
-5. Start development server:
-```bash
 npm run dev
+# Runs on http://localhost:5001
 ```
 
-Frontend akan berjalan di `http://localhost:5000`
+#### Admin Frontend
+```bash
+cd fe_admin
+npm install
+npm run dev
+# Runs on http://localhost:5002
+```
 
-## API Endpoints
+### Start All Services
 
-### Sessions
-- `POST /api/v1/sessions` - Buat session baru
-- `GET /api/v1/sessions` - Ambil semua sessions
+Run `start-all.bat` to start all services at once.
 
-### Messages
-- `POST /api/v1/messages` - Kirim pesan
-- `GET /api/v1/messages/{sessionId}` - Ambil pesan untuk session
+## Configuration
 
-### Admin
-- `GET /api/v1/admin/sessions` - Ambil semua sessions (admin)
-- `POST /api/v1/admin/reply` - Kirim balasan admin
-- `POST /api/v1/admin/finish-session` - Selesaikan session
+### Backend Environment
 
-## Catatan
+Create `be/.env` file:
+```
+APP_ENV=local
+APP_DEBUG=true
+APP_URL=http://localhost:5000
 
-- Pastikan backend Laravel berjalan sebelum menjalankan frontend
-- CORS sudah dikonfigurasi untuk mengizinkan request dari frontend
-- Database harus sudah dibuat sebelum menjalankan migrations
+# SMTP Configuration
+MAIL_MAILER=smtp
+MAIL_HOST=mail.hintstechnology.com
+MAIL_PORT=465
+MAIL_USERNAME=chatbox@hintstechnology.com
+MAIL_PASSWORD=@@chatbox123
+MAIL_ENCRYPTION=ssl
+MAIL_FROM_ADDRESS=chatbox@hintstechnology.com
+MAIL_FROM_NAME="${APP_NAME}"
+```
 
+### Frontend Environment (Optional)
+
+Create `.env` files in `fe_chatbox` and `fe_admin`:
+```
+VITE_GRAPHQL_URL=http://localhost:5000/graphql
+```
+
+## License
+
+GPL-3.0 license
