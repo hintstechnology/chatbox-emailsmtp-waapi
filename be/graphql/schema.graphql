@@ -1,0 +1,101 @@
+"A datetime string with format `Y-m-d H:i:s`, e.g. `2018-05-23 13:43:32`."
+scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+
+type Query {
+    sessions: [Session!]! @field(resolver: "App\\GraphQL\\Queries\\SessionsQuery")
+    session(sessionId: String!): Session @field(resolver: "App\\GraphQL\\Queries\\SessionQuery")
+    messages(sessionId: String!): [Message!]! @field(resolver: "App\\GraphQL\\Queries\\MessagesQuery")
+    adminSessions: [Session!]! @field(resolver: "App\\GraphQL\\Queries\\AdminSessionsQuery")
+    emailRecipients: [EmailRecipient!]! @field(resolver: "App\\GraphQL\\Queries\\EmailRecipientsQuery")
+    activeEmailRecipients: [EmailRecipient!]! @field(resolver: "App\\GraphQL\\Queries\\ActiveEmailRecipientsQuery")
+}
+
+type Mutation {
+    createSession(input: CreateSessionInput!): Session! @field(resolver: "App\\GraphQL\\Mutations\\CreateSessionMutation")
+    sendMessage(input: SendMessageInput!): Message! @field(resolver: "App\\GraphQL\\Mutations\\SendMessageMutation")
+    adminReply(input: AdminReplyInput!): Message! @field(resolver: "App\\GraphQL\\Mutations\\AdminReplyMutation")
+    finishSession(sessionId: String!): Session! @field(resolver: "App\\GraphQL\\Mutations\\FinishSessionMutation")
+    deleteSession(sessionId: String!): Boolean! @field(resolver: "App\\GraphQL\\Mutations\\DeleteSessionMutation")
+    createEmailRecipient(input: CreateEmailRecipientInput!): EmailRecipient! @field(resolver: "App\\GraphQL\\Mutations\\CreateEmailRecipientMutation")
+    updateEmailRecipient(id: ID!, input: UpdateEmailRecipientInput!): EmailRecipient! @field(resolver: "App\\GraphQL\\Mutations\\UpdateEmailRecipientMutation")
+    deleteEmailRecipient(id: ID!): EmailRecipient! @field(resolver: "App\\GraphQL\\Mutations\\DeleteEmailRecipientMutation")
+    setPrimaryEmailRecipient(id: ID!): EmailRecipient! @field(resolver: "App\\GraphQL\\Mutations\\SetPrimaryEmailRecipientMutation")
+}
+
+type Session {
+    id: ID!
+    session_id: String!
+    name: String!
+    email: String!
+    whatsapp: String!
+    environment: String
+    assigned_admin: String
+    status: String!
+    created_at: DateTime!
+    updated_at: DateTime!
+    messages: [Message!]! @field(resolver: "App\\GraphQL\\Fields\\SessionMessagesField")
+    unread_count: Int! @field(resolver: "App\\GraphQL\\Fields\\UnreadCountField")
+}
+
+type Message {
+    id: ID!
+    session_id: String!
+    type: String!
+    text: String!
+    admin_name: String
+    admin_email: String
+    admin_avatar: String
+    read_at: DateTime
+    created_at: DateTime!
+    updated_at: DateTime!
+    timestamp: Int! @field(resolver: "App\\GraphQL\\Fields\\TimestampField")
+}
+
+input CreateSessionInput {
+    session_id: String!
+    name: String!
+    email: String!
+    whatsapp: String!
+    environment: String
+    status: String = "active"
+}
+
+input SendMessageInput {
+    session_id: String!
+    type: String = "user"
+    text: String!
+    environment: String
+}
+
+input AdminReplyInput {
+    session_id: String!
+    message: String!
+    admin_name: String!
+    admin_email: String!
+    admin_avatar: String
+    environment: String
+}
+
+type EmailRecipient {
+    id: ID!
+    email: String!
+    name: String
+    is_active: Boolean!
+    is_primary: Boolean!
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
+input CreateEmailRecipientInput {
+    email: String!
+    name: String
+    is_active: Boolean = true
+    is_primary: Boolean = false
+}
+
+input UpdateEmailRecipientInput {
+    email: String
+    name: String
+    is_active: Boolean
+    is_primary: Boolean
+}

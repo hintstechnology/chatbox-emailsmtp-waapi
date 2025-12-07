@@ -1,0 +1,109 @@
+{
+  "hash": "85021de0",
+  "configHash": "822accf2",
+  "lockfileHash": "ae1eae15",
+  "browserHash": "4b4b9650",
+  "optimized": {
+    "react/jsx-dev-runtime": {
+      "src": "../../react/jsx-dev-runtime.js",
+      "file": "react_jsx-dev-runtime.js",
+      "fileHash": "1903d3cd",
+      "needsInterop": true
+    },
+    "@radix-ui/react-label@2.1.2": {
+      "src": "../../@radix-ui/react-label/dist/index.mjs",
+      "file": "@radix-ui_react-label@2__1__2.js",
+      "fileHash": "2298c3c0",
+      "needsInterop": false
+    },
+    "@radix-ui/react-slot@1.1.2": {
+      "src": "../../@radix-ui/react-slot/dist/index.mjs",
+      "file": "@radix-ui_react-slot@1__1__2.js",
+      "fileHash": "9c97dd4b",
+      "needsInterop": false
+    },
+    "@radix-ui/react-tabs@1.1.3": {
+      "src": "../../@radix-ui/react-tabs/dist/index.mjs",
+      "file": "@radix-ui_react-tabs@1__1__3.js",
+      "fileHash": "db82314f",
+      "needsInterop": false
+    },
+    "class-variance-authority@0.7.1": {
+      "src": "../../class-variance-authority/dist/index.mjs",
+      "file": "class-variance-authority@0__7__1.js",
+      "fileHash": "52427e25",
+      "needsInterop": false
+    },
+    "clsx": {
+      "src": "../../clsx/dist/clsx.mjs",
+      "file": "clsx.js",
+      "fileHash": "4c6e3a7b",
+      "needsInterop": false
+    },
+    "lucide-react": {
+      "src": "../../lucide-react/dist/esm/lucide-react.js",
+      "file": "lucide-react.js",
+      "fileHash": "7cc760d5",
+      "needsInterop": false
+    },
+    "motion/react": {
+      "src": "../../motion/dist/es/react.mjs",
+      "file": "motion_react.js",
+      "fileHash": "3130f8db",
+      "needsInterop": false
+    },
+    "react": {
+      "src": "../../react/index.js",
+      "file": "react.js",
+      "fileHash": "2790efda",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "54bd2677",
+      "needsInterop": true
+    },
+    "react/jsx-runtime": {
+      "src": "../../react/jsx-runtime.js",
+      "file": "react_jsx-runtime.js",
+      "fileHash": "9bac6086",
+      "needsInterop": true
+    },
+    "sonner@2.0.3": {
+      "src": "../../sonner/dist/index.mjs",
+      "file": "sonner@2__0__3.js",
+      "fileHash": "73a2123e",
+      "needsInterop": false
+    },
+    "tailwind-merge": {
+      "src": "../../tailwind-merge/dist/bundle-mjs.mjs",
+      "file": "tailwind-merge.js",
+      "fileHash": "196a0a9a",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-B6RNDEKH": {
+      "file": "chunk-B6RNDEKH.js"
+    },
+    "chunk-K23GC2QC": {
+      "file": "chunk-K23GC2QC.js"
+    },
+    "chunk-ZWGTOOHC": {
+      "file": "chunk-ZWGTOOHC.js"
+    },
+    "chunk-U7P2NEEE": {
+      "file": "chunk-U7P2NEEE.js"
+    },
+    "chunk-6PXSGDAH": {
+      "file": "chunk-6PXSGDAH.js"
+    },
+    "chunk-DRWLMN53": {
+      "file": "chunk-DRWLMN53.js"
+    },
+    "chunk-G3PMV62Z": {
+      "file": "chunk-G3PMV62Z.js"
+    }
+  }
+}
